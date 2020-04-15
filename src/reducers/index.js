@@ -1,8 +1,62 @@
 import {combineReducers} from 'redux';
-import pokedataReducer from './pokedataReducer'
-import pokedetailsReducer from "./pokedetailsReducer";
+
+import { ALL_POKEMON_SUCCESS, SINGLE_POKEMON_SUCCESS, TOTAL_COUNT, RESET, GET_ALL_POKEMONS, SEARCH_ITEM, TYPE, NO_TYPE } from '../actions/types';
+
+const pokeReducer = (allpokemon = [], action) => {
+    switch (action.type) {
+        case ALL_POKEMON_SUCCESS:
+            return action.payload;
+        default:
+            return allpokemon;
+    }
+};
+
+const pokeDetails = (details = [], action) => {
+    switch (action.type) {
+        case SINGLE_POKEMON_SUCCESS:
+            return [...details, action.payload];
+        case RESET:
+            return [];
+        default:
+            return details;
+    }
+};
+
+const searchPoke = (search = false, action) => {
+    switch (action.type) {
+        case SEARCH_ITEM:
+            return {search: true, text: action.payload};
+        case GET_ALL_POKEMONS:
+            return false;
+        default:
+            return false;
+    }
+};
+
+const filterPoke = (type = false, action) => {
+    switch (action.type) {
+        case TYPE:
+            return {filter: true, type: action.payload};
+        case NO_TYPE:
+            return false;
+        default:
+            return false;
+    }
+};
+
+const totalCount = (details = 0, action) => {
+    switch (action.type) {
+        case TOTAL_COUNT:
+            return action.payload;
+        default:
+            return details;
+    }
+};
 
 export default combineReducers({
-    pokedata:pokedataReducer,
-    pokedetails: pokedetailsReducer,
-})
+    allPokeDetails: pokeReducer,
+    singleDetails: pokeDetails,
+    searchPoke,
+    totalCount,
+    filterPoke
+});
