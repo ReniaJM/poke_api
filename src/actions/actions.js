@@ -7,7 +7,7 @@ const getPokemonDetails = data => dispatch => {
   data.map(a => axios.get(a.url).then(data => dispatch({type: SINGLE_POKEMON_SUCCESS, payload: data.data})));
 };
 
-export const axiosallPokemon = (resultPerPage, resultIndex) => dispatch => axios
+export const allPokemon = (resultPerPage, resultIndex) => dispatch => axios
   .get(`https://pokeapi.co/api/v2/pokemon/?limit=${resultPerPage}&offset=${resultIndex}`)
   .then(data => dispatch(getPokemonDetails(data.data.results, data.count)));
 
