@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 
 export const Image = styled.img`
@@ -63,6 +64,13 @@ const PokemonList = (props) => {
           </div>
       </Card>
     )
+};
+
+PokemonList.propTypes = {
+  name: PropTypes.string.isRequired,
+  sprites: PropTypes.object.isRequired,
+  types: PropTypes.array.isRequired,
+
 };
 
 export default PokemonList;

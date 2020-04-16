@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {searchResults} from '../../actions/actions';
+import PropTypes from 'prop-types';
 
-class Container extends React.Component {
+class Search extends React.Component {
   constructor () {
     super();
     this.state = {
@@ -39,10 +40,16 @@ class Container extends React.Component {
   }
 }
 
+
+Search.propTypes = {
+  getSearchResult: PropTypes.func.isRequired,
+  children: PropTypes.object.isRequired,
+};
+
 const mapDispatchToProps = dispatch => ({
   getSearchResult (text) {
     dispatch(searchResults(text));
   }
 });
 
-export default connect(null, mapDispatchToProps)(Container);
+export default connect(null, mapDispatchToProps)(Search);

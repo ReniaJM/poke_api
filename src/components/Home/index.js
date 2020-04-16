@@ -5,6 +5,7 @@ import Pagination from '../Pagination/index'
 import { allPokemon, reset } from '../../actions/actions';
 import {withRouter} from 'react-router-dom';
 import styled ,{keyframes } from 'styled-components';
+import PropTypes from "prop-types";
 
 const spinnerAnim = keyframes`
 
@@ -87,6 +88,15 @@ class HomePage extends React.Component {
     );
   }
 }
+
+HomePage.propTypes = {
+  handleAllPoke: PropTypes.func.isRequired,
+  resetCurrentPage: PropTypes.func.isRequired,
+  pokeDetails: PropTypes.array.isRequired,
+  allPokeName: PropTypes.array.isRequired,
+  filter: PropTypes.bool.isRequired,
+  search: PropTypes.bool.isRequired,
+};
 
 const mapStateToProps = state => ({
   allPokeName: state.allPokeDetails,

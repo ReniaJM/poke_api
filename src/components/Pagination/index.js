@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { getCount } from '../../actions/actions';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 export const Container = styled.div`
    margin: 1rem;
@@ -34,7 +35,6 @@ class Pagination extends Component {
     if (this.props.count !== 0) {
       pages = Math.ceil(this.props.count / 12);
     }
-
     return (
       <Container>
           <Link to='/page/1'>
@@ -67,6 +67,12 @@ class Pagination extends Component {
     );
   }
 }
+
+
+Pagination.propTypes = {
+  getTotalPokemons: PropTypes.func.isRequired,
+  count: PropTypes.number.isRequired,
+};
 
 const mapStateToProps = state => ({
   count: state.totalCount
