@@ -1,12 +1,44 @@
 import React from "react";
 import { connect } from 'react-redux';
-import CommentList from "../../components/CommentList/CommentList";
-import "./home.css";
-import PropTypes from "prop-types";
-import Comment from "../Comment/Comment";
+import PokemonList from "../PokemonList/PokemonList";
+import Pokemon from "../Pokemon/Pokemon";
 import Pagination from '../Pagination/index'
 import { allPokemon, reset } from '../../actions/actions';
 import {withRouter} from 'react-router-dom';
+import styled ,{keyframes } from 'styled-components';
+
+
+
+const spinnerAnim = keyframes`
+
+  0%{
+    transform: rotateZ(0deg);
+  }
+  25%{
+    transform: rotateZ(90deg);
+  }
+  50%{
+    transform: rotateZ(180deg);
+  }
+  75%{
+    transform: rotateZ(270deg);
+  }
+  100%{
+    transform: rotateZ(360deg);
+  }
+`;
+
+export const Spinner = styled.div`
+  border: 2px double #ffa502;
+  padding: .5em;
+  animation:${spinnerAnim} ease .5s infinite;
+  background: transparent;
+  width: 2em;
+  height: 2em;
+  border-radius: 100vw;
+  border-top-width: 0;
+  border-bottom-width: 0;
+`;
 
 class HomePage extends React.Component {
   componentDidMount () {
@@ -26,24 +58,26 @@ class HomePage extends React.Component {
       searchResults = searchResults.filter(data => data.name.startsWith(this.props.search.text));
     }
     return (
-      <React.Fragment>
-        <div>jkwenkjwenfkj</div>
-        <div>
+      <>
+        <div className="container">
+          <div className="row">
           {this.props.pokeDetails.length > 0 ? (
             searchResults.length === 0 ? 'Nothing to Show'
               : searchResults.map(data => (
-                <CommentList {...data} key={data.name} type={this.props.filter.type} />
+                <PokemonList {...data} key={data.name} type={this.props.filter.type} />
               ))
           ) : this.props.allPokeName.length > 0 ? (
             this.props.allPokeName.map(data => (
-              <Comment name={data.name} key={data.name} />
+              <Pokemon name={data.name} key={data.name} />
             ))
           ) : (
-            <div className="spinner"/>
+            <Spinner/>
           )}
+
+          </div>
         </div>
         <Pagination />
-      </React.Fragment>
+      </>
     );
   }
 }

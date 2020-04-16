@@ -1,12 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { getCount } from '../../actions/actions';
 
-// import { PageNumber, ActivePageNumber, PageContainer } from '../../utils/styleComponents';
-
-class Pagination extends React.Component {
+class Pagination extends Component {
   componentDidMount () {
     this.props.getTotalPokemons();
   }
@@ -19,31 +17,45 @@ class Pagination extends React.Component {
 
     return (
       <div>
-        <Link to='/page/1'>
-          {parseInt(this.props.match.params.id, 10) === 1 ? null : (
-            <div color='green'>First</div>
-          )}
-        </Link>
-        {parseInt(this.props.match.params.id, 10) !== 1 && (
-          <Link to={`/page/${parseInt(this.props.match.params.id, 10) - 1}`}>
-            <div color='green'>Prev</div>
-          </Link>
-        )}
-        {
-          <div color='green'>
-            {this.props.match.params.id}
-          </div>
-        }
-        {parseInt(this.props.match.params.id, 10) !== pages && (
-          <Link to={`/page/${parseInt(this.props.match.params.id, 10) + 1}`}>
-            <div color='green'>Next</div>
-          </Link>
-        )}
-        <Link to={`/page/${pages}`}>
-          {parseInt(this.props.match.params.id, 10) === pages ? null : (
-            <div color='green'>Last</div>
-          )}
-        </Link>
+        <nav aria-label="Page navigation example">
+          <ul className="pagination">
+
+              <Link to='/page/1'>
+                {parseInt(this.props.match.params.id, 10) === 1 ? null : (
+
+                  <li className="page-item">First</li>
+                )}
+              </Link>
+
+            <li className="page-item">
+              {parseInt(this.props.match.params.id, 10) !== 1 && (
+                <Link to={`/page/${parseInt(this.props.match.params.id, 10) - 1}`}>
+                  <li className="page-item">Prev</li>
+                </Link>
+              )}
+              {
+                <div color='green'>
+                  {this.props.match.params.id}
+                </div>
+              }
+            </li>
+            <li className="page-item">
+              {parseInt(this.props.match.params.id, 10) !== pages && (
+                <Link to={`/page/${parseInt(this.props.match.params.id, 10) + 1}`}>
+                  <li className="page-item">Next</li>
+                </Link>
+              )}
+            </li>
+
+              <Link to={`/page/${pages}`}>
+                {parseInt(this.props.match.params.id, 10) === pages ? null : (
+                  <li className="page-item">Last</li>
+                )}
+              </Link>
+
+          </ul>
+        </nav>
+
       </div>
     );
   }

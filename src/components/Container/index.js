@@ -1,6 +1,4 @@
 import React from 'react';
-// import styled from 'styled-components';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import {searchResults} from '../../actions/actions';
@@ -51,22 +49,23 @@ class Container extends React.Component {
   }
   render () {
     return (
-      <React.Fragment>
-        <div>
-          <Link to='/'>
-            {/*<ImageContainer>*/}
-            {/*  /!*<Image src={Logo} alt='Pokehouse Logo' />*!/*/}
-            {/*</ImageContainer>*/}
-          </Link>
-          <div>
-            <input placeholder='Search Pokemon' value={this.state.text} onChange={this.handleChange} onKeyPress={this.handleSearch} />
-            <button >
-              Search
-            </button>
-          </div>
-        </div>
+      <>
+          <form className="form-inline">
+            <div className="form-group mx-sm-3 mt-3">
+              <label htmlFor="search" className="sr-only">Search Pokemon</label>
+              <input
+                className="form-control"
+                id="search"
+                placeholder="Search Pokemon"
+                value={this.state.text}
+                onChange={this.handleChange}
+                onKeyPress={this.handleSearch}
+                type="text" />
+            </div>
+            <button type="submit" className="btn btn-primary mt-3">Confirm</button>
+          </form>
         {this.props.children}
-      </React.Fragment>
+      </>
     );
   }
 }
