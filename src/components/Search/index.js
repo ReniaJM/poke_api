@@ -30,7 +30,6 @@ class Search extends React.Component {
             onChange={this.handleChange}
             onKeyPress={this.handleSearch}
             type="text" />
-
             <div className="input-group-append">
               <button className="btn btn-outline-secondary" type="button" >Search</button>
             </div>

@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 import { connect } from 'react-redux';
-import PokemonList from "../PokemonList/PokemonList";
+import PokemonList from '../PokemonList/PokemonList';
 import Pagination from '../Pagination/index'
 import { allPokemon, reset } from '../../actions/actions';
 import {withRouter} from 'react-router-dom';
 import styled ,{keyframes } from 'styled-components';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 const spinnerAnim = keyframes`
 
