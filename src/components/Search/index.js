@@ -16,6 +16,7 @@ class Search extends React.Component {
       text: event.target.value
     }, () => this.props.getSearchResult(this.state.text));
   }
+
   render () {
     return (
       <div className="p-3">
@@ -31,7 +32,7 @@ class Search extends React.Component {
             type="text" />
 
             <div className="input-group-append">
-              <button className="btn btn-outline-secondary" type="button" id="button-addon2">Clear</button>
+              <button className="btn btn-outline-secondary" type="button" >Search</button>
             </div>
         </div>
         {this.props.children}

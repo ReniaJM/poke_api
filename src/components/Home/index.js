@@ -47,6 +47,7 @@ export const Header = styled.div`
   text-align: center;
   margin: 1rem;
   font-size: 2rem;
+  color: #495057;
 `;
 
 
@@ -69,7 +70,7 @@ class HomePage extends React.Component {
     }
     return (
       <>
-        <Header>All pokemons</Header>
+        <Header>Find Your Pokemon</Header>
         <div className="container">
           <div className="row">
           {this.props.pokeDetails.length > 0 ? (

@@ -20,6 +20,8 @@ export const Card = styled.div`
    flex: 1 0 10rem;
    border: 1px solid #ced4da;
    border-radius: .25rem;
+   padding-bottom: 1rem;
+   
 `;
 
 export const Name = styled.p`

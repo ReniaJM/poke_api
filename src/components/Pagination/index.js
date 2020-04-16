@@ -14,13 +14,13 @@ export const Container = styled.div`
 
 export const PageNumber = styled.div`
   display: inline-block;
-  padding: .4em .6em;
+  padding: .2em;
   margin: .2em;
   overflow: hidden;
   background: white;
   color: ${props => props.color};
   border: 1px solid ${props => props.color};
-  border-radius: 5px;
+  border-radius: .25rem;
   cursor:pointer;
   }
 `;
