@@ -9,8 +9,8 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import {applyMiddleware, createStore} from 'redux';
 
-import Container from './components/Container';
-import Home from './components/Home/Home';
+import Search from './components/Search';
+import Home from './components/Home';
 
 import rootReducer from './reducers';
 
@@ -23,9 +23,9 @@ ReactDOM.render(
     <Router>
       <Switch>
         <Route exact path='/' render={() => <Redirect to='page/1' />} />
-        <Route exact path='/page/:id' render={(props) => <Container {...props}>
+        <Route exact path='/page/:id' render={(props) => <Search {...props}>
           <Home />
-        </Container>} />
+        </Search>} />
       </Switch>
     </Router>
   </Provider>,

@@ -1,13 +1,10 @@
 import React from "react";
 import { connect } from 'react-redux';
 import PokemonList from "../PokemonList/PokemonList";
-import Pokemon from "../Pokemon/Pokemon";
 import Pagination from '../Pagination/index'
 import { allPokemon, reset } from '../../actions/actions';
 import {withRouter} from 'react-router-dom';
 import styled ,{keyframes } from 'styled-components';
-
-
 
 const spinnerAnim = keyframes`
 
@@ -29,16 +26,28 @@ const spinnerAnim = keyframes`
 `;
 
 export const Spinner = styled.div`
-  border: 2px double #ffa502;
-  padding: .5em;
+  border: 2px double #007bff;
+  padding: .5rem;
   animation:${spinnerAnim} ease .5s infinite;
   background: transparent;
-  width: 2em;
-  height: 2em;
+  width: 4em;
+  height: 4em;
   border-radius: 100vw;
   border-top-width: 0;
   border-bottom-width: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
 `;
+
+export const Header = styled.div`
+  text-align: center;
+  margin: 1rem;
+  font-size: 2rem;
+`;
+
 
 class HomePage extends React.Component {
   componentDidMount () {
@@ -59,6 +68,7 @@ class HomePage extends React.Component {
     }
     return (
       <>
+        <Header>All pokemons</Header>
         <div className="container">
           <div className="row">
           {this.props.pokeDetails.length > 0 ? (
@@ -66,14 +76,10 @@ class HomePage extends React.Component {
               : searchResults.map(data => (
                 <PokemonList {...data} key={data.name} type={this.props.filter.type} />
               ))
-          ) : this.props.allPokeName.length > 0 ? (
-            this.props.allPokeName.map(data => (
-              <Pokemon name={data.name} key={data.name} />
-            ))
-          ) : (
+          )
+            : (
             <Spinner/>
           )}
-
           </div>
         </div>
         <Pagination />

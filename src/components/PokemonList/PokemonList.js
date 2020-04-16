@@ -1,26 +1,67 @@
 import React from "react";
+import styled from "styled-components";
 
+
+export const Image = styled.img`
+   background-color: #fff;
+   margin: 1rem;
+   text-align: center;
+   flex: 1 0 1rem;
+   border: 1px solid #ced4da;
+   border-radius: 50rem;
+   color: #fff;
+`;
+
+export const Card = styled.div`
+   background-color: rgba(0, 0, 0, .04);
+   margin: 1rem;
+   text-align: center;
+   flex: 1 0 10rem;
+   border: 1px solid #ced4da;
+   border-radius: .25rem;
+`;
+
+export const Name = styled.p`
+   background-color: #007bff;
+   margin: 1rem;
+   text-align: center;
+   flex: 1 0 1rem;
+   border: 1px solid #ced4da;
+   border-radius: .25rem;
+   color: #fff;
+   text-transform: uppercase;
+`;
+
+export const CardText = styled.p`
+   background-color: #ffc107;
+   margin: 1rem;
+   text-align: center;
+   flex: 1 0 1rem;
+   border: 1px solid #ced4da;
+   border-radius: .25rem;
+   color: #fff;
+`;
 
 const PokemonList = (props) => {
     return (
-      <div className="card" style={{width: "10rem"}}>
-        <img className="card-img-top" src={props.sprites.front_default} alt="image"/>
+      <Card>
+        <Image src={props.sprites.front_default} alt="image"/>
           <div className="card-body text-center">
-            <p className="card-text">{props.name}</p>
+            <Name>{props.name}</Name>
             {props.types.map(
               typeObject =>
                 typeObject.type.name === props.type ? (
-                  <div key={typeObject.type.name}>
+                  <CardText key={typeObject.type.name}>
                     {typeObject.type.name}
-                  </div>
+                  </CardText>
                 ) : (
-                  <div key={typeObject.type.name}>
+                  <CardText key={typeObject.type.name}>
                     {typeObject.type.name}
-                  </div>
+                  </CardText>
                 )
             )}
           </div>
-      </div>
+      </Card>
     )
 };
 

@@ -3,6 +3,26 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { getCount } from '../../actions/actions';
+import styled from 'styled-components';
+
+export const Container = styled.div`
+   margin: 1rem;
+   text-align: center;
+   flex: 1 0 10rem;
+`;
+
+export const PageNumber = styled.div`
+  display: inline-block;
+  padding: .4em .6em;
+  margin: .2em;
+  overflow: hidden;
+  background: white;
+  color: ${props => props.color};
+  border: 1px solid ${props => props.color};
+  border-radius: 5px;
+  cursor:pointer;
+  }
+`;
 
 class Pagination extends Component {
   componentDidMount () {
@@ -16,47 +36,34 @@ class Pagination extends Component {
     }
 
     return (
-      <div>
-        <nav aria-label="Page navigation example">
-          <ul className="pagination">
+      <Container>
+          <Link to='/page/1'>
+            {parseInt(this.props.match.params.id, 10) === 1 ? null : (
 
-              <Link to='/page/1'>
-                {parseInt(this.props.match.params.id, 10) === 1 ? null : (
-
-                  <li className="page-item">First</li>
-                )}
-              </Link>
-
-            <li className="page-item">
-              {parseInt(this.props.match.params.id, 10) !== 1 && (
-                <Link to={`/page/${parseInt(this.props.match.params.id, 10) - 1}`}>
-                  <li className="page-item">Prev</li>
-                </Link>
-              )}
-              {
-                <div color='green'>
-                  {this.props.match.params.id}
-                </div>
-              }
-            </li>
-            <li className="page-item">
-              {parseInt(this.props.match.params.id, 10) !== pages && (
-                <Link to={`/page/${parseInt(this.props.match.params.id, 10) + 1}`}>
-                  <li className="page-item">Next</li>
-                </Link>
-              )}
-            </li>
-
-              <Link to={`/page/${pages}`}>
-                {parseInt(this.props.match.params.id, 10) === pages ? null : (
-                  <li className="page-item">Last</li>
-                )}
-              </Link>
-
-          </ul>
-        </nav>
-
-      </div>
+              <PageNumber color='#6c757d'>First </PageNumber>
+            )}
+          </Link>
+          {parseInt(this.props.match.params.id, 10) !== 1 && (
+            <Link to={`/page/${parseInt(this.props.match.params.id, 10) - 1}`}>
+              <PageNumber color='#6c757d'>Prev </PageNumber>
+            </Link>
+          )}
+          {
+            <PageNumber color='#dc3545'>
+              {this.props.match.params.id}
+            </PageNumber>
+          }
+          {parseInt(this.props.match.params.id, 10) !== pages && (
+            <Link to={`/page/${parseInt(this.props.match.params.id, 10) + 1}`}>
+              <PageNumber color='#6c757d'>Next</PageNumber>
+            </Link>
+          )}
+          <Link to={`/page/${pages}`}>
+            {parseInt(this.props.match.params.id, 10) === pages ? null : (
+              <PageNumber color='#6c757d'>Last</PageNumber>
+            )}
+          </Link>
+      </Container>
     );
   }
 }
